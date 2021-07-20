@@ -1,9 +1,9 @@
-import { Button, Htag } from '../components';
+import { Button, Heading } from '../components';
 
 export default function Home(): JSX.Element {
   return (
     <>
-      <Htag tag="h1">Htag</Htag>
+      <Heading tag="h1">Htag</Heading>
       <Button appearance="primary">Кнопка</Button>
       <Button appearance="ghost">Кнопка</Button>
     </>
