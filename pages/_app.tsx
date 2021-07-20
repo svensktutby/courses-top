@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     <>
       <Head>
         <title>Next Top App</title>
-        <link key={1} rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Component {...pageProps} />
