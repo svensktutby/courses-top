@@ -1,10 +1,12 @@
 :root {
   --black: #3b434e;
+  --gray-light: #ebebeb;
   --white: #fff;
-  --primary: #7653fc;
   --red: #fc836d;
   --green: #1dc37e;
   --green-light: #c8f8e4;
+  --primary: #7653fc;
+  --primary-hover: #6344df;
   --font-family: 'Noto Sans KR', sans-serif;
 }
 
