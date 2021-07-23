@@ -6,4 +6,5 @@ export interface ButtonProps
     HTMLButtonElement
   > {
   appearance: 'primary' | 'ghost';
+  arrow?: 'right' | 'down' | 'none';
 }
