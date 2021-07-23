@@ -13,8 +13,8 @@ export const Tag = ({
   return (
     <div
       className={cn(styles.tag, className, {
-        [styles.s]: size == 'sm',
-        [styles.m]: size == 'md',
+        [styles.sm]: size == 'sm',
+        [styles.md]: size == 'md',
         [styles.ghost]: color == 'ghost',
         [styles.red]: color == 'red',
         [styles.grey]: color == 'grey',
