@@ -1,4 +1,4 @@
-import { Button, Heading, Paragraph } from '../components';
+import { Button, Heading, Paragraph, Tag } from '../components';
 
 export default function Home(): JSX.Element {
   return (
@@ -14,6 +14,15 @@ export default function Home(): JSX.Element {
       <Paragraph size="lg">Большой</Paragraph>
       <Paragraph>Средний</Paragraph>
       <Paragraph size="sm">Маленький</Paragraph>
+
+      <Tag size="sm">Ghost</Tag>
+      <Tag size="md" color="red">
+        Red
+      </Tag>
+      <Tag size="sm" color="green">
+        Green
+      </Tag>
+      <Tag color="primary">Primary</Tag>
     </>
   );
 }
