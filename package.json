@@ -1,7 +1,11 @@
 {
-  "name": "top-app",
+  "name": "courses-top",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svensktutby/courses-top.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,6 +15,7 @@
     "lint:style:fix": "stylelint \"**/*.css\" --fix"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "date-fns": "^2.23.0",
     "next": "11.0.1",
     "react": "17.0.2",
