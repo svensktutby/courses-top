@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { ProductProps } from './Product.props';
 import styles from './Product.module.css';
-import { priceRu } from '../../helpers/helpers';
+import { declOfNum, priceRu } from '../../helpers/helpers';
 import { Card } from '..';
 import { Rating } from '..';
 import { Tag } from '..';
@@ -44,7 +44,10 @@ export const Product: FC<ProductProps> = ({
       </div>
       <div className={styles.priceTitle}>цена</div>
       <div className={styles.creditTitle}>кредит</div>
-      <div className={styles.rateTitle}>{product.reviewCount} отзывов</div>
+      <div className={styles.rateTitle}>
+        {product.reviewCount}{' '}
+        {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+      </div>
       <Divider className={styles.hr} />
       <div className={styles.description}>{product.description}</div>
       <div className={styles.feature}>
