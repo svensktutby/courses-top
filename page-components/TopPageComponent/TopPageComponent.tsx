@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styles from './TopPageComponent.module.css';
-import { Heading, Tag, HhData, Advantages, Paragraph } from '../../components';
+import { Heading, Tag, HhData, Advantages } from '../../components';
 import { TopPageComponentProps } from './TopPageComponent.props';
 import { TopLevelCategory } from '../../interfaces/page.interface';
 
@@ -39,7 +39,12 @@ export const TopPageComponent: FC<TopPageComponentProps> = ({
           <Advantages advantages={page.advantages} />
         </>
       )}
-      {page.seoText && <Paragraph>{page.seoText}</Paragraph>}
+      {page.seoText && (
+        <div
+          className={styles.seo}
+          dangerouslySetInnerHTML={{ __html: page.seoText }}
+        />
+      )}
       <Heading tag="h2">Получаемые навыки</Heading>
       {page.tags.map((tag) => (
         <Tag key={tag} color="primary">
