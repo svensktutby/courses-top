@@ -1,4 +1,7 @@
 module.exports = {
+  images: {
+    domains: ['courses-top.ru'],
+  },
   // other configs...
 
   // future: { webpack5: true }, // -- not needed since Next.js v11.0.0

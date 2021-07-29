@@ -7,6 +7,7 @@ import { Rating } from '..';
 import { Tag } from '..';
 import { Button } from '..';
 import { Divider } from '..';
+import Image from 'next/image';
 
 export const Product: FC<ProductProps> = ({
   product,
@@ -18,7 +19,12 @@ export const Product: FC<ProductProps> = ({
   return (
     <Card className={styles.product}>
       <div className={styles.logo}>
-        <img src={`${url}${product.image}`} alt={product.title} />
+        <Image
+          src={`${url}${product.image}`}
+          alt={product.title}
+          width={70}
+          height={70}
+        />
       </div>
       <div className={styles.title}>{product.title}</div>
       <div className={styles.price}>
