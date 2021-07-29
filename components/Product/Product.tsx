@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import cn from 'classnames';
 import { ProductProps } from './Product.props';
 import styles from './Product.module.css';
 import { declOfNum, priceRu } from '../../helpers/helpers';
@@ -79,7 +80,7 @@ export const Product: FC<ProductProps> = ({
           </div>
         )}
       </div>
-      <Divider className={styles.hr} />
+      <Divider className={cn(styles.hr, styles.hr2)} />
       <div className={styles.actions}>
         <Button appearance="primary">Узнать подробнее</Button>
         <Button
