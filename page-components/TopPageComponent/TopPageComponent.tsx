@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import styles from './TopPageComponent.module.css';
-import { Heading, Tag, HhData, Advantages } from '../../components';
+import { Heading, Tag, HhData, Advantages, Sort } from '../../components';
 import { TopPageComponentProps } from './TopPageComponent.props';
 import { TopLevelCategory } from '../../interfaces/page.interface';
+import { SortEnum } from '../../components/Sort/Sort.props';
 
 export const TopPageComponent: FC<TopPageComponentProps> = ({
   page,
@@ -18,7 +19,7 @@ export const TopPageComponent: FC<TopPageComponentProps> = ({
             {products.length}
           </Tag>
         )}
-        <span>Сортировка</span>
+        <Sort sort={SortEnum.Rating} setSort={() => {}} />
       </div>
       <div>
         {products && products.map((p) => <div key={p._id}>{p.title}</div>)}
