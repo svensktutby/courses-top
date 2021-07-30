@@ -7,22 +7,48 @@ import { Input } from '..';
 import { Rating } from '..';
 import { Textarea } from '..';
 import { Button } from '..';
+import { useForm, Controller } from 'react-hook-form';
+import { IReviewForm } from './ReviewForm.interface';
 
 export const ReviewForm: FC<ReviewFormProps> = ({
   productId,
   className,
   ...props
 }): JSX.Element => {
+  const { register, control, handleSubmit } = useForm<IReviewForm>();
+
+  const onSubmit = (data: IReviewForm) => {
+    console.log('Form fire: ', data);
+  };
+
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className={cn(styles.reviewForm, className)} {...props}>
-        <Input placeholder="Имя" />
-        <Input placeholder="Заголовок отзыва" className={styles.title} />
+        <Input {...register('name')} placeholder="Имя" />
+        <Input
+          {...register('title')}
+          placeholder="Заголовок отзыва"
+          className={styles.title}
+        />
         <div className={styles.rating}>
           <span>Оценка:</span>
-          <Rating rating={0} />
+          <Controller
+            control={control}
+            name="rating"
+            render={({ field }) => (
+              <Rating
+                rating={field.value}
+                isEditable
+                setRating={field.onChange}
+              />
+            )}
+          />
         </div>
-        <Textarea placeholder="Текст отзыва" className={styles.description} />
+        <Textarea
+          {...register('description')}
+          placeholder="Текст отзыва"
+          className={styles.description}
+        />
         <div className={styles.submit}>
           <Button appearance="primary">Отправить</Button>
           <span className={styles.info}>
@@ -36,6 +62,6 @@ export const ReviewForm: FC<ReviewFormProps> = ({
         <div>Спасибо, ваш отзыв будет опубликован после проверки.</div>
         <CloseIcon className={styles.close} />
       </div>
-    </>
+    </form>
   );
 };
