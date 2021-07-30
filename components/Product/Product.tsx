@@ -10,6 +10,7 @@ import { Tag } from '..';
 import { Button } from '..';
 import { Divider } from '..';
 import { Review } from '..';
+import { ReviewForm } from '..';
 
 export const Product: FC<ProductProps> = ({
   product,
@@ -105,8 +106,12 @@ export const Product: FC<ProductProps> = ({
         })}
       >
         {product.reviews.map((r) => (
-          <Review key={r._id} review={r} />
+          <div key={r._id}>
+            <Review review={r} />
+            <Divider />
+          </div>
         ))}
+        <ReviewForm productId={product._id} />
       </Card>
     </>
   );
