@@ -1,68 +1,74 @@
-import { useEffect, useState, KeyboardEvent } from 'react';
+import {
+  useEffect,
+  useState,
+  KeyboardEvent,
+  forwardRef,
+  ForwardedRef,
+} from 'react';
 import cn from 'classnames';
 import styles from './Rating.module.css';
 import { RatingProps } from './Rating.props';
 import StarIcon from './star.svg';
 
-export const Rating = ({
-  isEditable = false,
-  rating,
-  setRating,
-  ...props
-}: RatingProps): JSX.Element => {
-  const [ratingElements, setRatingElements] = useState<JSX.Element[]>(
-    new Array(5).fill(<></>),
-  );
+export const Rating = forwardRef(
+  (
+    { isEditable = false, rating, setRating, ...props }: RatingProps,
+    ref: ForwardedRef<HTMLDivElement>,
+  ): JSX.Element => {
+    const [ratingElements, setRatingElements] = useState<JSX.Element[]>(
+      new Array(5).fill(<></>),
+    );
 
-  const changeRating = (rate: number) => {
-    if (!isEditable) return;
-    constructRating(rate);
-  };
+    const changeRating = (rate: number) => {
+      if (!isEditable) return;
+      constructRating(rate);
+    };
 
-  const onClick = (rate: number) => {
-    if (!isEditable || !setRating) return;
-    setRating(rate);
-  };
+    const onClick = (rate: number) => {
+      if (!isEditable || !setRating) return;
+      setRating(rate);
+    };
 
-  const handleSpace = (rate: number, e: KeyboardEvent<SVGElement>) => {
-    if (e.code != 'Space' || !setRating) return;
-    setRating(rate);
-  };
+    const handleSpace = (rate: number, e: KeyboardEvent<SVGElement>) => {
+      if (e.code != 'Space' || !setRating) return;
+      setRating(rate);
+    };
 
-  const constructRating = (currentRating: number) => {
-    const updatedRatingElements = ratingElements.map((r, idx) => {
-      return (
-        <span
-          className={cn(styles.star, {
-            [styles.filled]: idx < currentRating,
-            [styles.editable]: isEditable,
-          })}
-          onMouseEnter={() => changeRating(idx + 1)}
-          onMouseLeave={() => changeRating(rating)}
-          onClick={() => onClick(idx + 1)}
-        >
-          <StarIcon
-            tabIndex={isEditable ? 0 : -1}
-            onKeyDown={(e: KeyboardEvent<SVGElement>) =>
-              isEditable && handleSpace(idx + 1, e)
-            }
-          />
-        </span>
-      );
-    });
+    const constructRating = (currentRating: number) => {
+      const updatedRatingElements = ratingElements.map((r, idx) => {
+        return (
+          <span
+            className={cn(styles.star, {
+              [styles.filled]: idx < currentRating,
+              [styles.editable]: isEditable,
+            })}
+            onMouseEnter={() => changeRating(idx + 1)}
+            onMouseLeave={() => changeRating(rating)}
+            onClick={() => onClick(idx + 1)}
+          >
+            <StarIcon
+              tabIndex={isEditable ? 0 : -1}
+              onKeyDown={(e: KeyboardEvent<SVGElement>) =>
+                isEditable && handleSpace(idx + 1, e)
+              }
+            />
+          </span>
+        );
+      });
 
-    setRatingElements(updatedRatingElements);
-  };
+      setRatingElements(updatedRatingElements);
+    };
 
-  useEffect(() => {
-    constructRating(rating);
-  }, [rating]);
+    useEffect(() => {
+      constructRating(rating);
+    }, [rating]);
 
-  return (
-    <div {...props}>
-      {ratingElements.map((r, idx) => (
-        <span key={idx}>{r}</span>
-      ))}
-    </div>
-  );
-};
+    return (
+      <div ref={ref} {...props}>
+        {ratingElements.map((r, idx) => (
+          <span key={idx}>{r}</span>
+        ))}
+      </div>
+    );
+  },
+);

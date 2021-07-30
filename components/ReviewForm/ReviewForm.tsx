@@ -40,6 +40,7 @@ export const ReviewForm: FC<ReviewFormProps> = ({
                 rating={field.value}
                 isEditable
                 setRating={field.onChange}
+                ref={field.ref}
               />
             )}
           />
