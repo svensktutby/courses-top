@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { GetStaticProps } from 'next';
 import axios from 'axios';
+import { API } from '../helpers/api';
 import {
   Button,
   Heading,
@@ -52,9 +53,8 @@ export default withLayout(Home);
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const firstCategory = 0;
-  const url = `${process.env.NEXT_PUBLIC_DOMAIN}/api/top-page/find`;
 
-  const { data: menu } = await axios.post<MenuItem[]>(url, {
+  const { data: menu } = await axios.post<MenuItem[]>(API.topPage.find, {
     firstCategory,
   });
 

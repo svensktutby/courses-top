@@ -6,7 +6,7 @@
   padding: 7px 15px;
 
   color: var(--black);
-  border: none;
+  border: 1px solid transparent;
   border-radius: 5px;
   outline-color: var(--primary);
   background: var(--white);
@@ -23,7 +23,7 @@
 }
 
 .error {
-  border: 1px solid var(--red);
+  border-color: var(--red);
 }
 
 .errorMessage {
