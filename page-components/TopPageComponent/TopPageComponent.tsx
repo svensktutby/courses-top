@@ -1,4 +1,4 @@
-import { useReducer, FC } from 'react';
+import { useReducer, FC, useEffect } from 'react';
 import styles from './TopPageComponent.module.css';
 import {
   Heading,
@@ -26,6 +26,10 @@ export const TopPageComponent: FC<TopPageComponentProps> = ({
   const setSort = (sort: SortEnum) => {
     dispatchSort({ type: sort });
   };
+
+  useEffect(() => {
+    dispatchSort({ type: 'reset', initialState: products });
+  }, [products]);
 
   return (
     <div className={styles.wrapper}>
