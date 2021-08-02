@@ -44,7 +44,7 @@ export const TopPageComponent: FC<TopPageComponentProps> = ({
       </div>
       <div>
         {sortedProducts &&
-          sortedProducts.map((p) => <Product key={p._id} product={p} />)}
+          sortedProducts.map((p) => <Product key={p._id} product={p} layout />)}
       </div>
       <div className={styles.hhTitle}>
         <Heading tag="h2">Вакансии - {page.category}</Heading>
