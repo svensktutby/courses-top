@@ -1,14 +1,22 @@
 import { AppProps } from 'next/dist/next-server/lib/router/router';
 import Head from 'next/head';
+import ym, { YMInitializer } from 'react-yandex-metrika';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
+  router.events.on('routeChangeComplete', (url: string) => {
+    if (typeof window !== 'undefined') {
+      ym('hit', url);
+    }
+  });
+
   return (
     <>
       <Head>
         <title>Next Top App</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link rel="preconnect" href="https://mc.yandex.ru" />
         <link
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
           rel="stylesheet"
@@ -19,7 +27,11 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
         />
         <meta property="og:locale" content="ru_RU" />
       </Head>
-
+      <YMInitializer
+        accounts={[]}
+        options={{ webvisor: true, defer: true }}
+        version="2"
+      />
       <Component {...pageProps} />
     </>
   );
